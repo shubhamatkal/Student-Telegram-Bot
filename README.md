@@ -1,4 +1,4 @@
-# IITM-BS Live Session Tracker
+# IITM-BS Bots for staying up to date with all the events and deadlines
 
 Welcome to the IIT Madras - Biological Sciences Live Session Tracker! This repository contains two folders: one for a WhatsApp bot and another for a Telegram bot. These bots are designed to provide details about today's live sessions and schedules specifically tailored for students in the Biological Sciences program at IIT Madras.
 
