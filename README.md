@@ -2,6 +2,8 @@
 
 Welcome to the IIT Madras-BS Uodates Bot repository ! This repository contains two folders: one for a WhatsApp bot and another for a Telegram bot. These bots are designed to provide details about today's live sessions and schedules specifically tailored for students
 
+google docs for getting information about ongoing updates in this repo
+https://docs.google.com/document/d/1yjr_NXChKjF3HIbJfOVPO2BQ8AqG9RMoNGmtE4Ih1C0/edit?usp=sharing
 ## Features
 
 - **WhatsApp Bot:**
