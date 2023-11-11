@@ -1,6 +1,6 @@
 # IITM-BS Bots for staying up to date with all the events and deadlines
 
-Welcome to the IIT Madras - Biological Sciences Live Session Tracker! This repository contains two folders: one for a WhatsApp bot and another for a Telegram bot. These bots are designed to provide details about today's live sessions and schedules specifically tailored for students in the Biological Sciences program at IIT Madras.
+Welcome to the IIT Madras-BS Uodates Bot repository ! This repository contains two folders: one for a WhatsApp bot and another for a Telegram bot. These bots are designed to provide details about today's live sessions and schedules specifically tailored for students
 
 ## Features
 
@@ -24,10 +24,6 @@ To use these bots, follow these steps:
    cd iitm-bs-live-session-tracker
    ```
 
-2. **Set Up Bot Credentials:**
-   - For the WhatsApp bot, provide your Twilio credentials.
-   - For the Telegram bot, obtain your Telegram Bot Token.
-
 3. **Install Dependencies:**
    ```bash
    pip install -r requirements.txt
@@ -47,9 +43,6 @@ To use these bots, follow these steps:
 
 ## Configuration
 
-### WhatsApp Bot
-1. Open `WhatsApp bot/config.py`.
-2. Enter your Twilio Account SID, Auth Token, and WhatsApp Sandbox number.
 
 ### Telegram Bot
 1. Open `Telegram bot/config.py`.
