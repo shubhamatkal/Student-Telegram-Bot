@@ -60,17 +60,17 @@ Have questions, ideas, or need help? Check out our [Discussions](https://discord
 
 ## Test bot tokens and Links to test bot (telegram)
   - test bot tokens:
-    - MAIN = 
-    - FOUNDATION = 
-    - DIPLOMA = 
-    - DEGREE = 
-    - ADMIN = 
+    - MAIN = 6965083380:AAHDWyCqvIhqYOAhi19gIF7u6CPcQKZ2qPM
+    - FOUNDATION = 6677627030:AAElX2DcR0vWqDGHdgbTio9og1DLJiMK5Mw
+    - DIPLOMA = 6623042071:AAGe0h0THJF9GtQabAQVAVfzZ4Q5RfFbY_A
+    - DEGREE = 6889271474:AAH4dzwWLgXfoNrgbhHhKV_pa8UuJ3FI5Ko
+    - ADMIN = 6429763956:AAEH5YyDKidoP4k9O-UFnZPhUYwl36aCkXY
   - test bot links:
-    - MAIN = 
-    - FOUNDATION = 
-    - DIPLOMA = 
-    - DEGREE = 
-    - ADMIN =
+    - [MAIN](t.me/test_main_iitmbs_bot)
+    - [FOUNDATION](t.me/test_foundation_iitmbs_bot)
+    - [DIPLOMA](t.me/test_diploma_iitmbs_bot)
+    - [DEGREE](t.me/test_degree_iitmbsbot)
+    - [ADMIN](t.me/test_admin_iitmbs_bot)
 
 ## Contributing
 
