@@ -66,11 +66,11 @@ Have questions, ideas, or need help? Check out our [Discussions](https://discord
     - DEGREE = 6889271474:AAH4dzwWLgXfoNrgbhHhKV_pa8UuJ3FI5Ko
     - ADMIN = 6429763956:AAEH5YyDKidoP4k9O-UFnZPhUYwl36aCkXY
   - test bot links:
-    - [MAIN](t.me/test_main_iitmbs_bot)
-    - [FOUNDATION](t.me/test_foundation_iitmbs_bot)
-    - [DIPLOMA](t.me/test_diploma_iitmbs_bot)
-    - [DEGREE](t.me/test_degree_iitmbsbot)
-    - [ADMIN](t.me/test_admin_iitmbs_bot)
+    - [MAIN] (t.me/test_main_iitmbs_bot)
+    - [FOUNDATION] (t.me/test_foundation_iitmbs_bot)
+    - [DIPLOMA] (t.me/test_diploma_iitmbs_bot)
+    - [DEGREE] (t.me/test_degree_iitmbsbot)
+    - [ADMIN] (t.me/test_admin_iitmbs_bot)
 
 ## Contributing
 
