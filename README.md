@@ -7,24 +7,31 @@ https://discord.gg/hux9vWjVhR
 
 ## Features
 
-- **WhatsApp Bot:**
-  - Retrieves today's live session details.
-  - Provides the schedule for the day.
-  - User-friendly interaction through WhatsApp.
-
 - **Telegram Bot:**
   - Fetches information on live sessions happening today.
   - Displays the daily schedule.
   - Seamless interaction within the Telegram platform.
 
-## Getting Started
+- **WhatsApp Bot:**
+  - Under development , checkout [workflow](https://docs.google.com/document/d/1yjr_NXChKjF3HIbJfOVPO2BQ8AqG9RMoNGmtE4Ih1C0/edit?usp=sharing)
 
-To use these bots, follow these steps:
+## Features under development
+- **Telegram Bot:**
+  - create ui for the bot
+  - creating various message handlers
+    
+for more info about ongoing developments and to particpate in development checkout [Issues](https://github.com/shubhamatkal/IITM-BS-bots/issues) , [workflow](https://docs.google.com/document/d/1yjr_NXChKjF3HIbJfOVPO2BQ8AqG9RMoNGmtE4Ih1C0/edit?usp=sharing)
+and in develpment if you need any help reach out to community on [discord](https://discord.gg/hux9vWjVhR)
 
-1. **Clone the Repository:**
+## Guide to contributing
+
+To make the contributions to the repo, follow these steps to set up project locally:
+
+1. **Fork this Repository on your account**
+2. **Clone the Repository:**
    ```bash
-   git clone https://github.com/your-username/iitm-bs-live-session-tracker.git
-   cd iitm-bs-live-session-tracker
+   git clone https://github.com/your-username/IITM-BS-bots.git
+   cd IITM-BS-bots
    ```
 
 3. **Install Dependencies:**
@@ -32,12 +39,11 @@ To use these bots, follow these steps:
    pip install -r requirements.txt
    ```
 
-4. **Run the Bots:**
-   - Start the WhatsApp bot:
-     ```bash
-     cd WhatsApp\ bot
-     python main.py
-     ```
+4. **Run and test the Bots:**
+   - Telegram Bot:
+     - Note: For running the Telegram bot , you need to get your bot token for testing purpose and save that bot token in your PC local variables
+     under the names as given in the code , for that you need to create 5 testing bot token for 5 different bots given in the code,however, i have also provided bot tokens ,
+     [test bot tokens](https://github.com/shubhamatkal/IITM-BS-bots/edit/main/README.md#test-bot-tokens-and-links-to-test-bot-telegram)
    - Start the Telegram bot:
      ```bash
      cd Telegram\ bot
@@ -46,37 +52,37 @@ To use these bots, follow these steps:
 
 ## Community and Discussions
 
-Have questions, ideas, or need help? Check out our [Discussions]([link-to-discussions](https://discord.gg/hux9vWjVhR)) to engage with the community.
+Have questions, ideas, or need help? Check out our [Discussions](https://discord.gg/hux9vWjVhR)) to engage with the community.
 
 ## Community Resources
 
-- [Discussions]([link-to-discussions](https://discord.gg/hux9vWjVhR)): Engage with the community.
-- https://discord.gg/hux9vWjVhR
-- https://docs.google.com/document/d/1yjr_NXChKjF3HIbJfOVPO2BQ8AqG9RMoNGmtE4Ih1C0/edit?usp=sharing
+- [Discord](https://discord.gg/hux9vWjVhR): Engage with the community.
+- [workflow](https://docs.google.com/document/d/1yjr_NXChKjF3HIbJfOVPO2BQ8AqG9RMoNGmtE4Ih1C0/edit?usp=sharing)
 
-## Configuration
-
-
-### Telegram Bot
-1. Open `Telegram bot/config.py`.
-2. Replace `"YOUR_TELEGRAM_BOT_TOKEN"` with your actual Telegram Bot Token.
-
-## Usage
-
-- **WhatsApp Bot:**
-  - Send a message to the Twilio WhatsApp Sandbox number with the keyword "sessions" or "schedule."
-
-- **Telegram Bot:**
-  - Start a chat with the Telegram bot and use the commands `/sessions` or `/schedule`.
+## Test bot tokens and Links to test bot (telegram)
+  - test bot tokens:
+    - MAIN = 
+    - FOUNDATION = 
+    - DIPLOMA = 
+    - DEGREE = 
+    - ADMIN = 
+  - test bot links:
+    - MAIN = 
+    - FOUNDATION = 
+    - DIPLOMA = 
+    - DEGREE = 
+    - ADMIN =
 
 ## Contributing
 
 We welcome contributions! If you have any suggestions, improvements, or bug fixes, feel free to open an issue or submit a pull request.
 
+
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/shubhamatkal/IITM-BS-bots/blob/main/LICENSE) file for details.
 
----
+## Help and contact:
+- [reach out](https://github.com/shubhamatkal)
 
-Feel free to customize this README according to the specific details and intricacies of your project. Good luck with your live session tracker for IITM BS students!
+
