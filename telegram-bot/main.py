@@ -3,12 +3,17 @@ from telegram import *
 from telegram.ext import Updater, CommandHandler, MessageHandler, filters , Application , ContextTypes
 import os
 
-# Create a Telegram bot
-TOKEN_MAIN = os.environ.get("MAIN_BOT_TOKEN")
-TOKEN_FOUNDATION = os.environ.get("FOUNDATION_BOT_TOKEN")
-TOKEN_DIPLOMA = os.environ.get("DIPLOMA_BOT_TOKEN")
-TOKEN_DEGREE = os.environ.get("DEGREE_BOT_TOKEN")
-TOKEN_ADMIN = os.environ.get("ADMIN_BOT_TOKEN")
+
+
+# Get telegram bot tokens from local variables
+#replace P_TEL_.... with your name of local var for token
+TOKEN_MAIN = os.environ.get("P_TEL_MAIN")
+TOKEN_FOUNDATION = os.environ.get("P_TEL_FOUNDATION")
+TOKEN_DIPLOMA = os.environ.get("P_TEL_DIPLOMA")
+TOKEN_DEGREE = os.environ.get("P_TEL_DEGREE")
+TOKEN_ADMIN = os.environ.get("P_TEL_ADMIN")
+print(TOKEN_ADMIN)
+print(TOKEN_MAIN)
 
 #defining some funtions
 async def ask_user(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
@@ -45,3 +50,7 @@ main_bot.add_handler(CommandHandler('selectcourse', ask_year))
 
 #polling
 main_bot.run_polling(allowed_updates=Update.ALL_TYPES)
+foundation_bot.run_polling(allowed_updates=Update.ALL_TYPES)
+diploma_bot.run_polling(allowed_updates=Update.ALL_TYPES)
+degree_bot.run_polling(allowed_updates=Update.ALL_TYPES)
+admin_bot.run_polling(allowed_updates=Update.ALL_TYPES)
