@@ -35,12 +35,12 @@ To use these bots, follow these steps:
    - Start the WhatsApp bot:
      ```bash
      cd WhatsApp\ bot
-     python main.py
+     python main_bot.py
      ```
    - Start the Telegram bot:
      ```bash
      cd Telegram\ bot
-     python main.py
+     python main_bot.py
      ```
 
 ## Configuration

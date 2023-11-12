@@ -46,7 +46,7 @@ To make the contributions to the repo, follow these steps to set up project loca
    - Start the Telegram bot:
      ```bash
      cd Telegram\ bot
-     python main.py
+     python main_bot.py
      ```
 
 ## Community and Discussions
