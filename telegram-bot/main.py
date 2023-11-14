@@ -4,14 +4,16 @@ import requests
 import json
 
 '''
-if you dont have bot token generated use: 6965083380:AAHDWyCqvIhqYOAhi19gIF7u6CPcQKZ2qPM , 
-bot link : https://t.me/test_main_iitmbs_bot 
+if you dont have bot token generated use: 6677627030:AAElX2DcR0vWqDGHdgbTio9og1DLJiMK5Mw , 
+6965083380:AAHDWyCqvIhqYOAhi19gIF7u6CPcQKZ2qPM , 
+bot link : https://t.me/test_foundation_iitmbs_bot , 
+https://t.me/test_main_iitmbs_bot 
 but we suggest you to create your own bot token for development 
 '''
 BOT_TOKEN = ""
 base_url = f"https://api.telegram.org/bot{BOT_TOKEN}"
 #insert your webhook url here, you can get it using vscode inbuilt tunneling in ports section
-# eg https://01tt20hz-8443.asse.devtunnels.ms/
+# eg https://01jt23tc-8443.asse.devtunnels.ms/
 WEBHOOK_URL = ""
 
 app = Flask(__name__)
