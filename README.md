@@ -75,7 +75,7 @@ Have questions, ideas, or need help? Check out our [Discussions](https://discord
 We welcome contributions! If you have any suggestions, improvements, or bug fixes, feel free to open an issue or submit a pull request.
 
 ## Live Bots Links
-- main(under dev)
+- [Production Bot](https://t.me/iitm_bs_updatesbot)
   
 ## License
 
