@@ -9,7 +9,8 @@ class User:
         # Create the 'db' directory if it doesn't exist
         if not os.path.exists(self.db_directory):
             os.makedirs(self.db_directory)
-        self.csv_file = os.path.join(self.db_directory, 'user.csv')
+        self.csv_file = os.path.join(self.db_directory, 'users.csv')
+        print(self.csv_file)
         self.headers = ['chat id', 'username', 'registered Subjects', 'is admin', 'last login']
         if not os.path.exists(self.csv_file):
             self._create_csv()
