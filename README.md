@@ -1,8 +1,14 @@
 # IITM-BS Bots for staying up to date with all the events and deadlines
 
-Welcome to the IIT Madras-BS Uodates Bot repository ! This repository contains two folders: one for a WhatsApp bot and another for a Telegram bot. These bots are designed to provide details about today's live sessions and schedules specifically tailored for BS students
-[discord](https://discord.gg/hux9vWjVhR)
-[![Contributors](https://img.shields.io/github/contributors/your-username/your-repo-name.svg)](https://your-repo-url/graphs/contributors)
+Welcome to the IIT Madras-BS Uodates Bot repository ! This repository contains two folders: one for a WhatsApp bot and another for a Telegram bot. These bots are designed to provide details about today's live sessions and schedules specifically tailored for BS students  
+![Discord](https://img.shields.io/discord/1173095754961801286)
+![GitHub issues](https://img.shields.io/github/issues/shubhamatkal/IITM-BS-bots)
+![GitHub forks](https://img.shields.io/github/forks/shubhamatkal/IITM-BS-bots)
+![GitHub Repo stars](https://img.shields.io/github/stars/shubhamatkal/IITM-BS-bots)
+![GitHub contributors](https://img.shields.io/github/contributors/shubhamatkal/IITM-BS-bots)
+
+
+
 
 ## Features
 
