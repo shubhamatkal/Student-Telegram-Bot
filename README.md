@@ -1,26 +1,37 @@
 # IITM-BS Bots for staying up to date with all the events and deadlines
 
-Welcome to the IIT Madras-BS Uodates Bot repository ! This repository contains two folders: one for a WhatsApp bot and another for a Telegram bot. These bots are designed to provide details about today's live sessions and schedules specifically tailored for BS students
-[discord](https://discord.gg/hux9vWjVhR)
-[![Contributors](https://img.shields.io/github/contributors/your-username/your-repo-name.svg)](https://your-repo-url/graphs/contributors)
+Welcome to the IIT Madras-BS Uodates Bot repository ! This repository contains two folders: one for a WhatsApp bot and another for a Telegram bot. These bots are designed to provide details about today's live sessions and schedules specifically tailored for BS students  
+![Discord](https://img.shields.io/discord/1173095754961801286)
+![GitHub issues](https://img.shields.io/github/issues/shubhamatkal/IITM-BS-bots)
+![GitHub forks](https://img.shields.io/github/forks/shubhamatkal/IITM-BS-bots)
+![GitHub Repo stars](https://img.shields.io/github/stars/shubhamatkal/IITM-BS-bots)
+![GitHub contributors](https://img.shields.io/github/contributors/shubhamatkal/IITM-BS-bots)
+
+
+
 
 ## Features
 
-- **Telegram Bot:**
+- **Telegram Bot(v1)(Under Development):**
   - Fetches information on live sessions happening today.
   - Displays the daily schedule.
   - Seamless interaction within the Telegram platform.
 
-- **WhatsApp Bot:**
-  - Under development , checkout [workflow](https://docs.google.com/document/d/1yjr_NXChKjF3HIbJfOVPO2BQ8AqG9RMoNGmtE4Ih1C0/edit?usp=sharing)
+- **WhatsApp Bot:(under Development)**
+  - Under development 
+- Checkout Good Docs for getting information about All features and Under Development versions  [Google Docs](https://docs.google.com/document/d/1yjr_NXChKjF3HIbJfOVPO2BQ8AqG9RMoNGmtE4Ih1C0/edit?usp=sharing)
+## v1 (Telegram Bot ) 
+  - ## Progress Tracker
+    - [X] Create Basic framework
+    - [ ] Create Class for handling various commands
+    - [ ] Create Frontend of bot using commands
+- ## Workflow Sheet Link:
+    - For getting all information about v1 Telegram Bot kindly go through this [Google Docs](https://docs.google.com/document/d/1yjr_NXChKjF3HIbJfOVPO2BQ8AqG9RMoNGmtE4Ih1C0/edit?usp=sharing)
+- ## WorkFlow Chart
+    [![v1.png](https://i.postimg.cc/13tbzrq5/v1.png)](https://postimg.cc/Tpzt7m0Z)
+ ## Documentation reference
 
-## Features under development
-- **Telegram Bot:**
-  - create ui for the bot
-  - creating various message handlers
-    
-for more info about ongoing developments and to particpate in development checkout [Issues](https://github.com/shubhamatkal/IITM-BS-bots/issues) , [workflow](https://docs.google.com/document/d/1yjr_NXChKjF3HIbJfOVPO2BQ8AqG9RMoNGmtE4Ih1C0/edit?usp=sharing)
-and in develpment if you need any help reach out to community on [discord](https://discord.gg/hux9vWjVhR)
+- Python Telegram Bot : https://core.telegram.org/bots/api
 
 ## Guide to contributing
 
@@ -41,8 +52,12 @@ To make the contributions to the repo, follow these steps to set up project loca
 4. **Run and test the Bots:**
    - Telegram Bot:
      - Note: For running the Telegram bot , you need to get your bot token for testing purpose and save that bot token in your PC local variables
-     under the names as given in the code , for that you need to create 5 testing bot token for 5 different bots given in the code,however, i have also provided bot tokens ,
+     under the names as given in the code , for that you need to create bot token for main bot given in the code,however, i have also provided bot tokens ,
      [test bot tokens](https://github.com/shubhamatkal/IITM-BS-bots/edit/main/README.md#test-bot-tokens-and-links-to-test-bot-telegram)
+  - Webhook link :
+      - For hosting bot during local development we need tunnel
+        For that you can you vscode inbuilt tunnel and get the link from there , and paste it in the code 
+
    - Start the Telegram bot:
      ```bash
      cd Telegram\ bot
@@ -60,28 +75,16 @@ Have questions, ideas, or need help? Check out our [Discussions](https://discord
 
 ## Test bot tokens and Links to test bot (telegram)
   - test bot tokens:
-    - MAIN = 6965083380:AAHDWyCqvIhqYOAhi19gIF7u6CPcQKZ2qPM
-    - FOUNDATION = 6677627030:AAElX2DcR0vWqDGHdgbTio9og1DLJiMK5Mw
-    - DIPLOMA = 6623042071:AAGe0h0THJF9GtQabAQVAVfzZ4Q5RfFbY_A
-    - DEGREE = 6889271474:AAH4dzwWLgXfoNrgbhHhKV_pa8UuJ3FI5Ko
-    - ADMIN = 6429763956:AAEH5YyDKidoP4k9O-UFnZPhUYwl36aCkXY
+    - MAIN = 6677627030:AAElX2DcR0vWqDGHdgbTio9og1DLJiMK5Mw
   - test bot links:
-    - [MAIN] (t.me/test_main_iitmbs_bot)
-    - [FOUNDATION] (t.me/test_foundation_iitmbs_bot)
-    - [DIPLOMA] (t.me/test_diploma_iitmbs_bot)
-    - [DEGREE] (t.me/test_degree_iitmbsbot)
-    - [ADMIN] (t.me/test_admin_iitmbs_bot)
-
+    - [Main Bot Link (for testing)](t.me/test_foundation_iitmbs_bot)
+      
 ## Contributing
 
 We welcome contributions! If you have any suggestions, improvements, or bug fixes, feel free to open an issue or submit a pull request.
 
 ## Live Bots Links
-- main(under dev)
-- foundation(under dev)
-- deiploma(under dev)
-- degree(under dev)
-- admin(under dev)
+- [Production Bot](https://t.me/iitm_bs_updatesbot)
   
 ## License
 
