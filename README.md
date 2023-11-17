@@ -31,7 +31,7 @@ Welcome to the IIT Madras-BS Uodates Bot repository ! This repository contains t
     [![v1.png](https://i.postimg.cc/13tbzrq5/v1.png)](https://postimg.cc/Tpzt7m0Z)
  ## Documentation reference
 
-- Python Telegram Bot : https://docs.python-telegram-bot.org/en/v20.6/
+- Python Telegram Bot : https://core.telegram.org/bots/api
 
 ## Guide to contributing
 
