@@ -29,6 +29,7 @@ Welcome to the IIT Madras-BS Uodates Bot repository ! This repository contains t
     - For getting all information about v1 Telegram Bot kindly go through this [Google Docs](https://docs.google.com/document/d/1yjr_NXChKjF3HIbJfOVPO2BQ8AqG9RMoNGmtE4Ih1C0/edit?usp=sharing)
 - ## WorkFlow Chart
     [![v1.png](https://i.postimg.cc/13tbzrq5/v1.png)](https://postimg.cc/Tpzt7m0Z)
+    [![cmd-flowchart.png](https://i.postimg.cc/1XSX0Lhv/cmd-flowchart.png)](https://postimg.cc/xJs9npdm)
  ## Documentation reference
 
 - Python Telegram Bot : https://core.telegram.org/bots/api
