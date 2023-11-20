@@ -60,7 +60,7 @@ class Bot:
             "message_thread_id": message_thread_id,
             "entities": json.dumps(entities),
         }
-        return requests.post(url, json=data).json()
+        return SentChat(self.__bot_token, requests.post(url, json=data).json())
 
     def edit_message_text(self, chat_id: int, message_id: int, text: str):
         url = self.__base_url + "/editMessageText"
