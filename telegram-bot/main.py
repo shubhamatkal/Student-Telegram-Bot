@@ -2,7 +2,8 @@
 from flask import Flask, request , Response
 import requests
 import json
-
+from bot_functions import Bot
+from messages import replies
 '''
 if you dont have bot token generated use: 6677627030:AAElX2DcR0vWqDGHdgbTio9og1DLJiMK5Mw , 
 6965083380:AAHDWyCqvIhqYOAhi19gIF7u6CPcQKZ2qPM , 
@@ -18,18 +19,17 @@ WEBHOOK_URL = ""
 
 app = Flask(__name__)
 
-bot.set_webhook("https://t7mpzpbx-8443.inc1.devtunnels.ms/")
+bot.set_webhook(WEBHOOK_URL)
 
 @app.route("/" , methods= ['POST', 'GET'])
 def index():
     if request.method == 'POST':
         response_ = request.get_json()
-        print("RESPONSE")
-        print(response_)
-        chat = bot.validate_update(response_)
-        print(chat.update_type)
-        # if response_['message']['text'] == "hello":
-        #     bot.send_message(chat_id=response_['message']['chat']['id'],text="this is test" )
+        # test_ = bot.validate_update(response_)
+        if response_['message']['text'] == "/start":
+            bot.send_message(chat_id=response_['message']['chat']['id'],text=replies["/start"] )
+        if response_['message']['text'] == "/select":
+            bot.send_message(chat_id=response_['message']['chat']['id'],text=replies["/select"] )
         return Response('ok', status= 200)
     else:
         return 'Bot is active now'
