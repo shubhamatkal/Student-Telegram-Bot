@@ -114,6 +114,9 @@ class UpdateChat(Bot):
     def send_message(self, text: str) -> dict:
         return super().send_message(self.chat_id, text)
 
+    def send_inline_keyboard(self, text: str, reply_markup={}) -> dict:
+        return super().send_message(self.chat_id, text, reply_markup=reply_markup)
+
     def reply_message(self, text: str) -> dict:
         return super().send_message(
             self.from_id, text, reply_to_message_id=self.message_id
@@ -141,8 +144,8 @@ class UpdateChat(Bot):
         """
         if self.message_type != "bot_command":
             return None
-        start = self.__entities[0]["offset"]+1
-        end = start + self.__entities[0]["length"]-1
+        start = self.__entities[0]["offset"] + 1
+        end = start + self.__entities[0]["length"] - 1
         if only_start == True:
             if start == 1:
                 if argument == False:
