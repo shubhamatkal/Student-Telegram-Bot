@@ -1,7 +1,7 @@
 #imports
 from flask import Flask, request , Response
 from bot_functions import Bot
-
+from .messages import replies
 '''
 if you dont have bot token generated use: 6677627030:AAElX2DcR0vWqDGHdgbTio9og1DLJiMK5Mw , 
 6965083380:AAHDWyCqvIhqYOAhi19gIF7u6CPcQKZ2qPM , 
@@ -26,7 +26,7 @@ def index():
         chat = bot.validate_update(response_)
         if chat.message_type=='bot_command':
             if chat.get_command() == 'start':
-                chat.send_message('Hello the bot has been started.\n<b>This bot is under development now</b>')
+                chat.send_message(replies.get('/start'))
         return Response('ok', status= 200)
     else:
         return 'Bot is active now'

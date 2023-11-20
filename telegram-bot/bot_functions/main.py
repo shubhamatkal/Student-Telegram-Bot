@@ -31,7 +31,7 @@ class Bot:
         chat_id: int,
         text: str,
         message_thread_id: int = None,
-        parse_mode: str = None,
+        parse_mode: str = "HTML",
         entities: dict = {},
         disable_web_page_preview: bool = False,
         disable_notification: bool = False,
