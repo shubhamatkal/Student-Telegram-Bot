@@ -1,7 +1,5 @@
 #imports
 from flask import Flask, request , Response
-import requests
-import json
 from bot_functions import Bot
 
 '''
