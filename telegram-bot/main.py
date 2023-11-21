@@ -16,7 +16,7 @@ bot = Bot(BOT_TOKEN)
 
 # insert your webhook url here, you can get it using vscode inbuilt tunneling in ports section
 # eg https://01jt23tc-8443.asse.devtunnels.ms/
-WEBHOOK_URL = "https://01tt20hz-8443.asse.devtunnels.ms/"
+WEBHOOK_URL = ""
 
 #initalize database
 file_path = '../db/users.json'
