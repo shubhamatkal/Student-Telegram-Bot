@@ -1,8 +1,9 @@
 import requests
 import json
 from collections import namedtuple
-from typing import Callable
+from typing import Callable, Tuple
 import os
+
 
 class Bot:
     BOT_TOKEN = os.environ.get("TG_BOT_TOKEN")
@@ -10,7 +11,7 @@ class Bot:
 
     def __init__(self, token: str = BOT_TOKEN) -> None:
         """
-        arguments: token - string (required)
+        arguments: token - string (required if enviornment variable 'TG_BOT_TOKEN' is not set)
         returns: None
         """
         self.__bot_token = token
@@ -47,7 +48,7 @@ class Bot:
         url = f"{self.__base_url}/sendMessage"
         data = {
             "chat_id": chat_id,
-            "parse_mode": parse_mode if parse_mode != None else self.PARSE_MODES.MD,
+            "parse_mode": parse_mode if parse_mode != None else self.PARSE_MODES.HTML,
             "text": text,
             "allow_sending_without_reply": True,
             "disable_web_page_preview": disable_web_page_preview,
@@ -59,7 +60,7 @@ class Bot:
             "message_thread_id": message_thread_id,
             "entities": json.dumps(entities),
         }
-        return requests.post(url, json=data).json()
+        return SentChat(self.__bot_token, requests.post(url, json=data).json())
 
     def edit_message_text(self, chat_id: int, message_id: int, text: str):
         url = self.__base_url + "/editMessageText"
@@ -99,9 +100,10 @@ class UpdateChat(Bot):
         self.update_type = update_tuple[1][0]
         self.from_id = update_tuple[1][1].get("from", {}).get("id")
         self.text = update_tuple[1][1].get("text")
-        self.message_type = \
+        self.__message_type = (
             update_tuple[1][1].get("entities", [{}])[0].get("type", "text")
-
+        )
+        self.__entities = update_tuple[1][1].get("entities", [{}])
         if self.update_type == "callback_query":
             self.chat_id: int = update_tuple[1][1]["message"].get("chat", {}).get("id")
             self.message_id: int = update_tuple[1][1]["message"].get("message_id")
@@ -112,13 +114,55 @@ class UpdateChat(Bot):
     def send_message(self, text: str) -> dict:
         return super().send_message(self.chat_id, text)
 
+    def send_inline_keyboard(self, text: str, reply_markup={}) -> dict:
+        return super().send_message(self.chat_id, text, reply_markup=reply_markup)
+
     def reply_message(self, text: str) -> dict:
         return super().send_message(
             self.from_id, text, reply_to_message_id=self.message_id
         )
 
     def command_handler(self, command: str, handler: Callable):
+        """
+        I'll work on this later, It will add a command handler to the class.
+        """
         pass
+
+    def get_command(
+        self, argument: bool = False, only_start: bool = True
+    ) -> None | str | Tuple[str | str]:
+        """
+        I'll work on this later, It'll return either `None` or `str` or `tuple`.\n
+        Returns:
+            `None` - If the message does not contain a command.\n
+            `str` - If the message contains a command and the argument parameter is set to `False`.\n
+            `tuple` - If the message contains a command and the argument parameter is set to `True`.\n
+        Sample returns:
+            `None`: 'Just a simple text message'\n
+            `'bot_command'`: '/bot_command'\n
+            `('bot_command', 'argument')`: '/bot_command argument'
+        """
+        if self.message_type != "bot_command":
+            return None
+        start = self.__entities[0]["offset"] + 1
+        end = start + self.__entities[0]["length"] - 1
+        if only_start == True:
+            if start == 1:
+                if argument == False:
+                    return self.text[start:end]
+                else:
+                    return (self.text[start:end], self.text[end:].strip())
+            else:
+                return None
+
+        return self.text[start:end]
+
+    @property
+    def message_type(self) -> str:
+        """
+        Returns the message type from command or callback (text otherwise)
+        """
+        return self.__message_type
 
 
 class SentChat(Bot):
