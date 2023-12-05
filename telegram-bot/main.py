@@ -38,12 +38,12 @@ def index():
             if command[0] == "start":
                 print("user sent start command")
                 #register_user
-                if db.user_exists(response_["message"]["chat"]["id"]):
+                if db.user_exists(str(response_["message"]["chat"]["id"])):
                     print("user is old")
                     chat.send_message(replies.get("/start_old_user"))
                 else:
                     print("user is new")
-                    db.add_chat_id(response_["message"]["chat"]["id"])
+                    db.add_chat_id(str(response_["message"]["chat"]["id"]))
                     chat.send_message(replies.get("/start_new_user"))
             elif command[0] == "select":
                 keyboard = {
