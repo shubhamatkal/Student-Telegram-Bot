@@ -3,29 +3,29 @@ from flask import Flask, request, Response
 from bot_functions import Bot
 from messages import replies
 import os
-from database_handler import MongoDBHandler
+from database_handler import UsersDBHandler
+
 
 # Enter your telegram bot token here
-# This will by default take the testing bot token(6677627030:AAElX2DcR0vWqDGHdgbTio9og1DLJiMK5Mw,
-# https://t.me/test_foundation_iitmbs_bot )
+# https://t.me/test_foundation_iitmbs_bot link for default bot
 BOT_TOKEN = os.environ.get(
     "TG_BOT_TOKEN", "6677627030:AAElX2DcR0vWqDGHdgbTio9og1DLJiMK5Mw"
 )
 
-bot = Bot(BOT_TOKEN)
-
 #mongo db url(for testing and dev purpose create ur own db locally or using mongodb atlas and paste the link below)
 DB_URL = ""
-
-db = MongoDBHandler(DB_URL, "iitm-bot", "users")
 
 # insert your webhook url here, you can get it using vscode inbuilt tunneling in ports section
 # eg https://01jt23tc-8443.asse.devtunnels.ms/
 WEBHOOK_URL = ""
 
-app = Flask(__name__)
 
+bot = Bot(BOT_TOKEN)
+users_db = UsersDBHandler(DB_URL, "foundation", "users")
+# notes_db = MongoDBHandler(DB_URL, "foundation", "notes")
+# pyq_db = MongoDBHandler(DB_URL, "foundation", "pyq")
 bot.set_webhook(WEBHOOK_URL)
+app = Flask(__name__)
 
 
 @app.route("/", methods=["POST", "GET"])
@@ -38,12 +38,12 @@ def index():
             if command[0] == "start":
                 print("user sent start command")
                 #register_user
-                if db.user_exists(str(response_["message"]["chat"]["id"])):
+                if users_db.user_exists(str(response_["message"]["chat"]["id"])):
                     print("user is old")
                     chat.send_message(replies.get("/start_old_user"))
                 else:
                     print("user is new")
-                    db.add_chat_id(str(response_["message"]["chat"]["id"]))
+                    users_db.add_chat_id(str(response_["message"]["chat"]["id"]))
                     chat.send_message(replies.get("/start_new_user"))
             elif command[0] == "select":
                 keyboard = {
@@ -62,14 +62,6 @@ def index():
         return "Bot is active now"
 
 
-# Notes:
-# Add chat_ids
-# mongo_handler.add_chat_id("Bob")
-# # Add subjects to a specific user
-# mongo_handler.add_subjects_to_user("Shubham", ["Math", "Science"])
-# mongo_handler.add_subjects_to_user("Bob", ["History", "Geography"])
-
-
 if __name__ == "__main__":
     app.run(port=8443, debug=True, use_reloader=True)
-    db.close_connection()
+    users_db.close_connection()

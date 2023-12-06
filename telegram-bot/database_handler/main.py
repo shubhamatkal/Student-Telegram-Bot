@@ -3,7 +3,7 @@ from datetime import datetime
 
 current_datetime = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-class MongoDBHandler:
+class UsersDBHandler:
     def __init__(self, connection_string, database_name, collection_name):
         self.client = pymongo.MongoClient(connection_string)
         self.db = self.client[database_name]

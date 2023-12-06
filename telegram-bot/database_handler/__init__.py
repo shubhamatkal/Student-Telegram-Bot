@@ -1,1 +1,1 @@
-from .users import (MongoDBHandler)
+from .main import (UsersDBHandler)
