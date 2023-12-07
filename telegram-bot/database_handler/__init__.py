@@ -1,1 +1,1 @@
-from .main import (UsersDBHandler)
+from .main import (UsersDBHandler , MongoDBNotes , MongoDBPYQ)

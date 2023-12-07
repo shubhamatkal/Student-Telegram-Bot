@@ -3,7 +3,7 @@ from flask import Flask, request, Response
 from bot_functions import Bot
 from messages import replies
 import os
-from database_handler import UsersDBHandler
+from database_handler import UsersDBHandler , MongoDBPYQ , MongoDBNotes
 
 
 # Enter your telegram bot token here
@@ -22,8 +22,8 @@ WEBHOOK_URL = ""
 
 bot = Bot(BOT_TOKEN)
 users_db = UsersDBHandler(DB_URL, "foundation", "users")
-# notes_db = MongoDBHandler(DB_URL, "foundation", "notes")
-# pyq_db = MongoDBHandler(DB_URL, "foundation", "pyq")
+notes_db = MongoDBNotes(DB_URL, "NOTES", "NOTES")
+pyq_db = MongoDBPYQ(DB_URL, "PYQ", "PYQ")
 bot.set_webhook(WEBHOOK_URL)
 app = Flask(__name__)
 

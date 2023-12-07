@@ -44,8 +44,8 @@ class UsersDBHandler:
 
 
 #class for notes
-import pymongo
 
+import pymongo
 class MongoDBNotes:
     def __init__(self, connection_string, database_name, collection_name):
         self.client = pymongo.MongoClient(connection_string)
@@ -96,27 +96,8 @@ class MongoDBNotes:
         else:
             print(f"Subject '{subject_name}' not found.")
 
-# # Example Usage:
-# mongo_db = MongoDBNotes('mongodb://localhost:27017', 'my_db', 'notes_collection')
-
-# # Adding subjects
-# mongo_db.add_subject('Mathematics')
-# mongo_db.add_subject('Science')
-
-# # Adding notes to Mathematics without tag
-# mongo_db.add_note('Mathematics', 'Algebra', 'https://example.com/algebra_notes')
-
-# # Adding tag to a note
-# mongo_db.add_tag_to_note('Mathematics', 'Algebra', 'algebra_tag_2')
-
-# # Adding tags to notes in Mathematics
-# mongo_db.add_tag_to_note('Mathematics', 'Algebra', 'algebra_tag_3')
-
-
 
 #class for PYQ
-#class for notes 
-
 class MongoDBPYQ:
     def __init__(self, connection_string, database_name, collection_name):
         self.client = pymongo.MongoClient(connection_string)
@@ -132,20 +113,16 @@ class MongoDBPYQ:
     def add_pyq(self, subject_name, pyq_name, pyq_link, tag_name=None):
         subject = self.collection.find_one({'subject': subject_name})
         if subject:
-            pyqs = subject['pyq']
-            for pyq in pyqs:
-                if pyq['name'] == pyq_name:
+            pyq = subject['pyq']
+            for py in pyq:
+                if py['name'] == pyq_name:
                     print(f"pyq '{pyq_name}' already exists in '{subject_name}'")
                     return
-            if tag_name:
-                pyqs.append({'name': pyq_name, 'link': pyq_link, 'tags': [tag_name]})
-            else:
-                pyqs.append({'name': pyq_name, 'link': pyq_link})
-            self.collection.update_one({'subject': subject_name}, {'$set': {'pyqs': pyqs}})
-            if tag_name:
-                print(f"pyq '{pyq_name}' added to '{subject_name}' with tag '{tag_name}'.")
-            else:
-                print(f"pyq '{pyq_name}' added to '{subject_name}'.")
+            pyq.append({'name': pyq_name, 'link': pyq_link, 'tags': [tag_name]})
+            self.collection.update_one({'subject': subject_name}, {'$set': {'pyq': pyq}})
+            print(f"pyq '{pyq_name}' added to '{subject_name}' with tag '{tag_name}'.")
+        else:
+            print("Subject is not present , kindly add the subject first")
 
     def add_tag_to_pyq(self, subject_name, pyq_name, tag_name):
         subject = self.collection.find_one({'subject': subject_name})
@@ -166,3 +143,7 @@ class MongoDBPYQ:
             print(f"pyq '{pyq_name}' not found in '{subject_name}'.")
         else:
             print(f"Subject '{subject_name}' not found.")
+    def close_connection(self):
+        self.client.close()
+        print("connection closed with database")
+
