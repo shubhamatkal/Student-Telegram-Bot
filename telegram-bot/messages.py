@@ -11,9 +11,9 @@
 replies = {
     "/help": "🌟 Hello there! Need a helping hand? 🤝 I'm here to guide you through your IIT Madras BSc journey! As your friendly educational chatbot, my mission is to make accessing resources and information as easy as pie 📚🤓. Whether you're looking for course materials, schedule details, or any other academic support, just type in your query and consider it sorted! How can I assist you today? 🎓💡",
 
-    "/start_new_user": "🎉 Welcome aboard the IIT Madras BSc adventure! 🚀 To get started, could you please register? It's a quick and easy process that will unlock a world of resources tailored just for you! 📚✨ Just click the 'Register' button below and fill in your details. Once you're all set, you'll be ready to dive into a sea of learning and discovery! 🌊🎓 Can't wait to see you on the inside! 🙌 \n[Register Button]",
+    "/start_new_user": "🎉 Welcome aboard the IIT Madras BSc adventure! 🚀 To get started, could you please register? It's a quick and easy process that will unlock a world of resources tailored just for you! 📚✨ Just click the 'Register' button below and fill in your details. Once you're all set, you'll be ready to dive into a sea of learning and discovery! 🌊🎓 Can't wait to see you on the inside! 🙌 \nCan you tell me in which level you are?",
 
-    "/start_old_user": "🌟 Welcome back! 🚀 It's great to see you again on your IIT Madras BSc journey. We've missed you! Ready to explore more amazing learning resources and tools? 📚💡 Just type in what you're looking for, and I'll help you navigate to it in no time. Let's continue this exciting educational adventure together! 🎓✨" , 
+    "/start_old_user": "🌟 Welcome back! 🚀 It's great to see you again on your IIT Madras BSc journey. We've missed you! Ready to explore more amazing learning resources and tools? 📚💡 Just type in what you're looking for, and I'll help you navigate to it in no time. Let's continue this exciting educational adventure together! 🎓✨ Use the following commands :\n/notes = for accessing notes \n/pyqs = for accessing pyqs \n" , 
 
     "/todays_deadlines": """📅 Good day! Here are your deadlines for today: 🚀
 [list_of_deadlines]

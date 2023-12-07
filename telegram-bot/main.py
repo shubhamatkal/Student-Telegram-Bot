@@ -33,11 +33,14 @@ def index():
     if request.method == "POST":
         response_ = request.get_json()
         chat = bot.validate_update(response_)
+
         if chat.message_type == "bot_command":
             command = chat.get_command(argument=True)
+
             if command[0] == 'help':
                 chat.send_message(replies.get("/help"))
-            if command[0] == "start":
+
+            elif command[0] == "start":
                 print("user sent start command")
                 #register_user
                 if users_db.user_exists(str(response_["message"]["chat"]["id"])):
@@ -45,8 +48,21 @@ def index():
                     chat.send_message(replies.get("/start_old_user"))
                 else:
                     print("user is new")
+                    #add chat id to the database
                     users_db.add_chat_id(str(response_["message"]["chat"]["id"]))
-                    chat.send_message(replies.get("/start_new_user"))
+                    #attaching the inine keyboard
+                    keyboard = {
+                    "inline_keyboard": [
+                        [bot.callback_button("Foundation", "1")],
+                        [
+                            bot.callback_button("Diploma Programming", "2"),
+                            bot.callback_button("Diploma DS", "3"),
+                        ],
+                        [bot.callback_button("Degree", "4")],
+                    ]
+                    }
+                    chat.send_inline_keyboard(replies.get("/start_new_user"), keyboard)
+                    #we want to catch the selected answer by the user, in inline keyboard 
             elif command[0] == "select":
                 keyboard = {
                     "inline_keyboard": [
@@ -59,6 +75,8 @@ def index():
                     ]
                 }
                 chat.send_inline_keyboard(replies.get("/select"), keyboard)
+            elif command[0] == "notes":
+                pass
         return Response("ok", status=200)
     else:
         return "Bot is active now"
