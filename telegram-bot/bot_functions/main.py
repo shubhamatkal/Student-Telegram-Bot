@@ -39,7 +39,7 @@ class Bot:
         reply_to_message_id: int = None,
         allow_sending_without_reply: bool = False,
         reply_markup: dict = {},
-    ) -> dict:
+    ) -> "SentChat":
         """
         Please refer to this link for more information on arguments:\n
         https://core.telegram.org/bots/api#sendmessage\n
@@ -85,6 +85,38 @@ class Bot:
     def url_button(text: str, url: str = None) -> dict:
         return {"text": text, "url": url}
 
+    def get_chat(self, chat_id: int | str):
+        url = self.__base_url + "/getChat"
+        payload = {"chat_id": chat_id}
+        response = requests.post(url, json=payload).json()
+        return response
+
+    def get_chat_member(self, chat_id: int, user_id: int):
+        url = self.__base_url + "/getChatMember"
+        payload = {"chat_id": chat_id, "user_id": user_id}
+        response = requests.post(url, json=payload).json()
+        return response
+
+    def get_message_url(self, chat_id: int | str, message_id: int):
+        chat = self.get_chat(chat_id)
+        if not chat["ok"]:
+            raise RuntimeError()
+        chat = chat["result"]
+        url = "https://t.me/{0}/{1}"
+        if chat["type"] in ("group", "supergroup", "channel"):
+            username = chat.get("active_usernames", [0])[0]
+            if username:
+                return url.format(username, message_id)
+            else:
+                return url.format('c/'+str(chat_id)[4:], message_id)
+        raise RuntimeError()
+
+    def get_chat_members_count(self, chat_id: int):
+        url = self.__base_url + "/getChatMembersCount"
+        payload = {"chat_id": chat_id}
+        response = requests.post(url, json=payload).json()
+        return response
+
 
 class UpdateChat(Bot):
     def __init__(self, update: dict, token: str) -> None:
@@ -111,7 +143,7 @@ class UpdateChat(Bot):
             self.chat_id = update_tuple[1][1].get("chat", {}).get("id")
             self.message_id = update_tuple[1][1].get("message_id")
 
-    def send_message(self, text: str) -> dict:
+    def send_message(self, text: str):
         return super().send_message(self.chat_id, text)
 
     def send_inline_keyboard(self, text: str, reply_markup={}) -> dict:
@@ -121,6 +153,9 @@ class UpdateChat(Bot):
         return super().send_message(
             self.from_id, text, reply_to_message_id=self.message_id
         )
+
+    def delete_message(self):
+        return super().delete_message(self.chat_id, self.message_id)
 
     def command_handler(self, command: str, handler: Callable):
         """
@@ -157,6 +192,9 @@ class UpdateChat(Bot):
 
         return self.text[start:end]
 
+    def get_message_url(self):
+        return super().get_message_url(self.chat_id, self.message_id)
+
     @property
     def message_type(self) -> str:
         """
@@ -192,3 +230,6 @@ class SentChat(Bot):
             message.delete_message()
         """
         return super().delete_message(self.chat_id, self.message_id)
+
+    def get_message_url(self):
+        return super().get_message_url(self.chat_id, self.message_id)
