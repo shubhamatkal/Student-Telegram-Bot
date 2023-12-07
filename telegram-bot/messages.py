@@ -83,4 +83,8 @@ Whether it's Mathematics, Physics, Computer Science, or any other subject you're
 [PYQS]
 Use these papers to practice and refine your understanding of the subject. They're a great way to gauge your preparedness and identify areas where you might need a bit more focus. 🤓
 If you need any more assistance or resources, just let me know. I'm here to support you in acing [subject_name]! 🌟
-Happy studying and all the best for your exams! 🚀"""}
+Happy studying and all the best for your exams! 🚀"""
+
+
+
+}

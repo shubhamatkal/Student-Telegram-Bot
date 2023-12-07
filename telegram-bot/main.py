@@ -35,6 +35,8 @@ def index():
         chat = bot.validate_update(response_)
         if chat.message_type == "bot_command":
             command = chat.get_command(argument=True)
+            if command[0] == 'help':
+                chat.send_message(replies.get("/help"))
             if command[0] == "start":
                 print("user sent start command")
                 #register_user
