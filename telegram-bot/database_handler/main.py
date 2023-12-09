@@ -1,7 +1,6 @@
 import pymongo
 from datetime import datetime
 
-current_datetime = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
 class UsersDBHandler:
     def __init__(self, connection_string, database_name, collection_name):
@@ -10,23 +9,34 @@ class UsersDBHandler:
         self.collection = self.db[collection_name]
         print("connection successful for db")
 
-    def add_chat_id(self, chat_id):
+    def add_chat_id(self, chat_id, name= None ):
+        current_datetime = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         user_data = {
             chat_id: {
                 "subjects": [],
+                'name': name,
+                'is_contributer' :False,
+                'is_admin': False,
+                'is_maintainer': False,
                 "last_login":current_datetime   # Set the last login to the current time
             }
         }
         self.collection.insert_one(user_data)
         print(f"chat_id '{chat_id}' added.")
 
-    def add_subjects_to_user(self, chat_id, subjects):
+    def add_subjects_to_user(self, chat_id, subjects):#subjects will be list
         user = self.collection.find_one({chat_id: {"$exists": True}})
         if user:
             existing_subjects = user[chat_id].get("subjects", [])
-            updated_subjects = existing_subjects + subjects
-            self.collection.update_one({chat_id: {"$exists": True}}, {"$set": {f"{chat_id}.subjects": updated_subjects}})
-            print(f"Subjects added for user: {chat_id}")
+            if existing_subjects:
+                print(f"Subjects already exist for user: {chat_id}. Cannot add new subjects.")
+            else:
+                updated_subjects = existing_subjects + subjects
+                self.collection.update_one(
+                    {chat_id: {"$exists": True}},
+                    {"$set": {f"{chat_id}.subjects": updated_subjects}}
+                )
+                print(f"Subjects added for user: {chat_id}")
         else:
             print(f"User '{chat_id}' does not exist in the database.")
 
@@ -34,18 +44,63 @@ class UsersDBHandler:
         user = self.collection.find_one({chat_id: {"$exists": True}})
         return user is not None
 
-    def add_new_subkey_to_all_users(self, new_subkey, default_value):
+    def add_new_subkey_to_all_users(self, new_subkey, default_value): # as of now this throws an error, need to fix
         self.collection.update_many({}, {"$set": {f"$[user].{new_subkey}": default_value}}, array_filters=[{"user": {"$exists": True}}])
         print(f"Added new subkey '{new_subkey}' to all users.")
+
+    def delete_subjects(self, chat_id):
+        user = self.collection.find_one({chat_id: {"$exists": True}})
+        if user:
+            self.collection.update_one(
+                {chat_id: {"$exists": True}},
+                {"$set": {f"{chat_id}.subjects": []}}
+            )
+            print(f"All subjects deleted for user: {chat_id}")
+        else:
+            print(f"User '{chat_id}' does not exist in the database.")
+
+    def update_last_login(self, chat_id):
+        current_datetime = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        user = self.collection.find_one({chat_id: {"$exists": True}})
+        if user:
+            self.collection.update_one(
+                {chat_id: {"$exists": True}},
+                {"$set": {f"{chat_id}.last_login": current_datetime}}
+            )
+            print(f"Last login updated for user: {chat_id}")
+        else:
+            print(f"User '{chat_id}' does not exist in the database.")
+
+    def add_admin(self, chat_id):
+        user = self.collection.find_one({chat_id: {"$exists": True}})
+        if user:
+            self.collection.update_one(
+                {chat_id: {"$exists": True}},
+                {"$set": {f"{chat_id}.is_admin": True}}
+            )
+            print(f"Admin privileges added for user: {chat_id}")
+        else:
+            print(f"User '{chat_id}' does not exist in the database.")
+
+    def add_maintainer(self, chat_id):
+        user = self.collection.find_one({chat_id: {"$exists": True}})
+        if user:
+            self.collection.update_one(
+                {chat_id: {"$exists": True}},
+                {"$set": {f"{chat_id}.is_maintainer": True}}
+            )
+            print(f"Maintainer privileges added for user: {chat_id}")
+        else:
+            print(f"User '{chat_id}' does not exist in the database.")
 
     def close_connection(self):
         self.client.close()
         print("connection closed with database")
 
 
-#class for notes
+# class for notes
 
-import pymongo
+
 class MongoDBNotes:
     def __init__(self, connection_string, database_name, collection_name):
         self.client = pymongo.MongoClient(connection_string)
@@ -147,3 +202,18 @@ class MongoDBPYQ:
         self.client.close()
         print("connection closed with database")
 
+#todo testing classes
+
+# users class
+# uri = ""
+# user = UsersDBHandler(uri,"test" , "test")
+# user.add_chat_id("123", name='Shubham')
+# user.add_subjects_to_user("123", ['english', 'hindi', 'marathi'])
+# # user.add_new_subkey_to_all_users("new_key_test", None)
+# user.add_admin("123")
+# user.add_maintainer("123")
+# if user.user_exists("123"):
+#     print("User exists")
+# # run this first
+# user.delete_subjects("123")
+# user.update_last_login("123")
