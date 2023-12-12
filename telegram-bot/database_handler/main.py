@@ -285,7 +285,6 @@ class MongoDBPYQ:
 
 #testing for notes
 #testing for notes class
-# urii = "mongodb+srv://shubhamatkal333:shubhamatkal@iitm-bs-bot.oe19teo.mongodb.net/?retryWrites=true&w=majority"
 # notes = MongoDBNotes(urii, database_name="test" , collection_name="testnotes")
 # notes.add_subject("marathi")
 # notes.add_note("marathi", "1st chapter", "www.google.com" )
