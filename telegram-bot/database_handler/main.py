@@ -151,6 +151,71 @@ class MongoDBNotes:
         else:
             print(f"Subject '{subject_name}' not found.")
 
+    def delete_notes_of_subject(self, subject_name):
+        result = self.collection.delete_one({'subject': subject_name})
+        if result.deleted_count > 0:
+            print(f"All notes of '{subject_name}' deleted.")
+        else:
+            print(f"No notes found for '{subject_name}'.")
+
+    def delete_note_from_subject(self, subject_name, note_name):
+        result = self.collection.update_one(
+            {'subject': subject_name},
+            {'$pull': {'notes': {'name': note_name}}}
+        )
+        if result.modified_count > 0:
+            print(f"Note '{note_name}' deleted from '{subject_name}'.")
+        else:
+            print(f"Note '{note_name}' not found in '{subject_name}'.")
+
+    def update_subject_name(self, original_subject_name, new_subject_name):
+        result = self.collection.update_many(
+            {'subject': original_subject_name},
+            {'$set': {'subject': new_subject_name}}
+        )
+        if result.modified_count > 0:
+            print(f"Subject name updated from '{original_subject_name}' to '{new_subject_name}'.")
+        else:
+            print(f"No subject named '{original_subject_name}' found.")
+
+    def update_note_name(self, subject_name, original_note_name, new_note_name):
+        result = self.collection.update_one(
+            {'subject': subject_name, 'notes.name': original_note_name},
+            {'$set': {'notes.$.name': new_note_name}}
+        )
+        if result.modified_count > 0:
+            print(f"Note name updated from '{original_note_name}' to '{new_note_name}' in '{subject_name}'.")
+        else:
+            print(f"No note named '{original_note_name}' found in '{subject_name}'.")
+
+    def update_note_link(self, subject_name, note_name, new_note_link):
+        result = self.collection.update_one(
+            {'subject': subject_name, 'notes.name': note_name},
+            {'$set': {'notes.$.link': new_note_link}}
+        )
+        if result.modified_count > 0:
+            print(f"Note link updated for '{note_name}' in '{subject_name}'.")
+        else:
+            print(f"No note named '{note_name}' found in '{subject_name}'.")
+
+    def update_note_tag(self, subject_name, note_name, new_tag): # this appends the tag and not update!
+        result = self.collection.update_one(
+            {'subject': subject_name, 'notes.name': note_name},
+            {'$addToSet': {'notes.$.tags': new_tag}}
+        )
+        if result.modified_count > 0:
+            print(f"Tag '{new_tag}' added to note '{note_name}' in '{subject_name}'.")
+        else:
+            print(f"No note named '{note_name}' found in '{subject_name}'.")
+
+    def delete_all_notes(self):
+        result = self.collection.delete_many({})
+        print(f"All notes deleted from all subjects. ({result.deleted_count} documents deleted)")
+
+    def close_connection(self):
+        self.client.close()
+        print("connection closed with database")
+
 
 #class for PYQ
 class MongoDBPYQ:
@@ -217,3 +282,19 @@ class MongoDBPYQ:
 # # run this first
 # user.delete_subjects("123")
 # user.update_last_login("123")
+
+#testing for notes
+#testing for notes class
+# urii = "mongodb+srv://shubhamatkal333:shubhamatkal@iitm-bs-bot.oe19teo.mongodb.net/?retryWrites=true&w=majority"
+# notes = MongoDBNotes(urii, database_name="test" , collection_name="testnotes")
+# notes.add_subject("marathi")
+# notes.add_note("marathi", "1st chapter", "www.google.com" )
+# notes.add_tag_to_note("marathi", "1st chapter", "testtag")
+# notes.update_note_tag("marathi","1st chapter" , "old")
+# notes.update_note_link("marathi", "1st chapter", "www.yahoo.com")
+# notes.update_note_name("marathi", "1st chapter", "2nd chapter")
+# notes.update_subject_name("marathi", "english")
+# notes.delete_note_from_subject("english", "2nd chapter")
+# notes.delete_notes_of_subject("english")
+# notes.delete_all_notes()
+# notes.close_connection()
