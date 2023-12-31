@@ -1,24 +1,20 @@
 # imports
+import os
 from flask import Flask, request, Response
 from bot_functions import Bot
 from messages import replies
-import os
-from database_handler import UsersDBHandler , MongoDBPYQ , MongoDBNotes
-
+from database_handler import UsersDBHandler, MongoDBPYQ, MongoDBNotes
 
 # Enter your telegram bot token here
 # https://t.me/test_foundation_iitmbs_bot link for default bot
-BOT_TOKEN = os.environ.get(
-    "TG_BOT_TOKEN", "6677627030:AAElX2DcR0vWqDGHdgbTio9og1DLJiMK5Mw"
-)
+BOT_TOKEN = os.environ.get("TG_BOT_TOKEN", "6677627030:AAElX2DcR0vWqDGHdgbTio9og1DLJiMK5Mw")
 
-#mongo db url(for testing and dev purpose create ur own db locally or using mongodb atlas and paste the link below)
+# mongo db url (for testing and dev purpose create your own db locally or using mongodb atlas and paste the link below)
 DB_URL = ""
 
 # insert your webhook url here, you can get it using vscode inbuilt tunneling in ports section
 # eg https://01jt23tc-8443.asse.devtunnels.ms/
 WEBHOOK_URL = ""
-
 
 bot = Bot(BOT_TOKEN)
 users_db = UsersDBHandler(DB_URL, "foundation", "users")
@@ -37,7 +33,7 @@ def index():
             command = chat.get_command(argument=True)
             if command[0] == "start":
                 print("user sent start command")
-                #register_user
+                # register_user
                 if users_db.user_exists(str(response_["message"]["chat"]["id"])):
                     print("user is old")
                     chat.send_message(replies.get("/start_old_user"))
