@@ -1,4 +1,5 @@
-# create the logic for fetching the required things for creating messages for users
+# create the logic for fetching the required things for creating messages
+# for users
 
 replies = {
     "/help": "🌟 Hello there! Need a helping hand? 🤝 I'm here to guide you through your IIT Madras BSc journey! As your friendly educational chatbot, my mission is to make accessing resources and information as easy as pie 📚🤓. Whether you're looking for course materials, schedule details, or any other academic support, just type in your query and consider it sorted! How can I assist you today? 🎓💡",

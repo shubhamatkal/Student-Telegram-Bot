@@ -3,6 +3,7 @@ from datetime import datetime
 
 current_datetime = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
+
 class UsersDBHandler:
     def __init__(self, connection_string, database_name, collection_name):
         self.client = pymongo.MongoClient(connection_string)
@@ -14,7 +15,7 @@ class UsersDBHandler:
         user_data = {
             chat_id: {
                 "subjects": [],
-                "last_login":current_datetime   # Set the last login to the current time
+                "last_login": current_datetime   # Set the last login to the current time
             }
         }
         self.collection.insert_one(user_data)
@@ -25,7 +26,8 @@ class UsersDBHandler:
         if user:
             existing_subjects = user[chat_id].get("subjects", [])
             updated_subjects = existing_subjects + subjects
-            self.collection.update_one({chat_id: {"$exists": True}}, {"$set": {f"{chat_id}.subjects": updated_subjects}})
+            self.collection.update_one({chat_id: {"$exists": True}}, {
+                                       "$set": {f"{chat_id}.subjects": updated_subjects}})
             print(f"Subjects added for user: {chat_id}")
         else:
             print(f"User '{chat_id}' does not exist in the database.")
@@ -35,7 +37,9 @@ class UsersDBHandler:
         return user is not None
 
     def add_new_subkey_to_all_users(self, new_subkey, default_value):
-        self.collection.update_many({}, {"$set": {f"$[user].{new_subkey}": default_value}}, array_filters=[{"user": {"$exists": True}}])
+        self.collection.update_many({},
+                                    {"$set": {f"$[user].{new_subkey}": default_value}},
+                                    array_filters=[{"user": {"$exists": True}}])
         print(f"Added new subkey '{new_subkey}' to all users.")
 
     def close_connection(self):
@@ -43,9 +47,9 @@ class UsersDBHandler:
         print("connection closed with database")
 
 
-#class for notes
+# class for notes
 
-import pymongo
+
 class MongoDBNotes:
     def __init__(self, connection_string, database_name, collection_name):
         self.client = pymongo.MongoClient(connection_string)
@@ -64,15 +68,19 @@ class MongoDBNotes:
             notes = subject['notes']
             for note in notes:
                 if note['name'] == note_name:
-                    print(f"Note '{note_name}' already exists in '{subject_name}'")
+                    print(
+                        f"Note '{note_name}' already exists in '{subject_name}'")
                     return
             if tag_name:
-                notes.append({'name': note_name, 'link': note_link, 'tags': [tag_name]})
+                notes.append(
+                    {'name': note_name, 'link': note_link, 'tags': [tag_name]})
             else:
                 notes.append({'name': note_name, 'link': note_link})
-            self.collection.update_one({'subject': subject_name}, {'$set': {'notes': notes}})
+            self.collection.update_one({'subject': subject_name}, {
+                                       '$set': {'notes': notes}})
             if tag_name:
-                print(f"Note '{note_name}' added to '{subject_name}' with tag '{tag_name}'.")
+                print(
+                    f"Note '{note_name}' added to '{subject_name}' with tag '{tag_name}'.")
             else:
                 print(f"Note '{note_name}' added to '{subject_name}'.")
 
@@ -86,18 +94,21 @@ class MongoDBNotes:
                     if tag_name not in note_tags:
                         note_tags.append(tag_name)
                         note['tags'] = note_tags
-                        self.collection.update_one({'subject': subject_name}, {'$set': {'notes': notes}})
-                        print(f"Tag '{tag_name}' added to note '{note_name}' in '{subject_name}'.")
+                        self.collection.update_one({'subject': subject_name}, {
+                                                   '$set': {'notes': notes}})
+                        print(
+                            f"Tag '{tag_name}' added to note '{note_name}' in '{subject_name}'.")
                         return
                     else:
-                        print(f"Tag '{tag_name}' already exists for note '{note_name}' in '{subject_name}'.")
+                        print(
+                            f"Tag '{tag_name}' already exists for note '{note_name}' in '{subject_name}'.")
                         return
             print(f"Note '{note_name}' not found in '{subject_name}'.")
         else:
             print(f"Subject '{subject_name}' not found.")
 
 
-#class for PYQ
+# class for PYQ
 class MongoDBPYQ:
     def __init__(self, connection_string, database_name, collection_name):
         self.client = pymongo.MongoClient(connection_string)
@@ -116,11 +127,15 @@ class MongoDBPYQ:
             pyq = subject['pyq']
             for py in pyq:
                 if py['name'] == pyq_name:
-                    print(f"pyq '{pyq_name}' already exists in '{subject_name}'")
+                    print(
+                        f"pyq '{pyq_name}' already exists in '{subject_name}'")
                     return
-            pyq.append({'name': pyq_name, 'link': pyq_link, 'tags': [tag_name]})
-            self.collection.update_one({'subject': subject_name}, {'$set': {'pyq': pyq}})
-            print(f"pyq '{pyq_name}' added to '{subject_name}' with tag '{tag_name}'.")
+            pyq.append(
+                {'name': pyq_name, 'link': pyq_link, 'tags': [tag_name]})
+            self.collection.update_one({'subject': subject_name}, {
+                                       '$set': {'pyq': pyq}})
+            print(
+                f"pyq '{pyq_name}' added to '{subject_name}' with tag '{tag_name}'.")
         else:
             print("Subject is not present , kindly add the subject first")
 
@@ -134,16 +149,19 @@ class MongoDBPYQ:
                     if tag_name not in pyq_tags:
                         pyq_tags.append(tag_name)
                         pyq['tags'] = pyq_tags
-                        self.collection.update_one({'subject': subject_name}, {'$set': {'pyqs': pyqs}})
-                        print(f"Tag '{tag_name}' added to pyq '{pyq_name}' in '{subject_name}'.")
+                        self.collection.update_one({'subject': subject_name}, {
+                                                   '$set': {'pyqs': pyqs}})
+                        print(
+                            f"Tag '{tag_name}' added to pyq '{pyq_name}' in '{subject_name}'.")
                         return
                     else:
-                        print(f"Tag '{tag_name}' already exists for pyq '{pyq_name}' in '{subject_name}'.")
+                        print(
+                            f"Tag '{tag_name}' already exists for pyq '{pyq_name}' in '{subject_name}'.")
                         return
             print(f"pyq '{pyq_name}' not found in '{subject_name}'.")
         else:
             print(f"Subject '{subject_name}' not found.")
+
     def close_connection(self):
         self.client.close()
         print("connection closed with database")
-

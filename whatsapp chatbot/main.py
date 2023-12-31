@@ -3,7 +3,7 @@ from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
 import time
 import datetime
-#GLOBAL VARIABLES
+# GLOBAL VARIABLES
 logged_in = False
 first_interation = True
 
@@ -27,8 +27,11 @@ class WhatsAppBot:
         num_msg = {}
         new_messages = []
         new_numbers = []
-        new_messages = self.driver.find_elements(By.XPATH,"//div[@class='_2KKXC']" )      #find_elements_by_xpath("//div[@class='_2wP43']")
-        new_numbers = self.driver.find_elements(By.XPATH, "//div[@class='Mk0Bp _30scZ']")
+        # find_elements_by_xpath("//div[@class='_2wP43']")
+        new_messages = self.driver.find_elements(
+            By.XPATH, "//div[@class='_2KKXC']")
+        new_numbers = self.driver.find_elements(
+            By.XPATH, "//div[@class='Mk0Bp _30scZ']")
         for number in new_numbers:
             value = new_messages[0].text
             # Add the key-value pair to the dictionary.
@@ -51,23 +54,27 @@ class WhatsAppBot:
         #     search_box.click()
         #     first_interation = False
         print("clicked the search box")
-        self.driver.find_element(By.XPATH,'//*[@id="side"]/div[1]/div/div[2]/div[2]/div/div[1]').send_keys(to_number)
+        self.driver.find_element(
+            By.XPATH,
+            '//*[@id="side"]/div[1]/div/div[2]/div[2]/div/div[1]').send_keys(to_number)
         time.sleep(2)
         print("typed the number")
         try:
-            self.driver.find_element(By.XPATH, "//span[@title='" + to_number + "']").click()
+            self.driver.find_element(
+                By.XPATH, "//span[@title='" + to_number + "']").click()
             time.sleep(1)
             print("selected the contact")
-            self.driver.find_element(By.XPATH, "//div[@title='Type a message']").send_keys(message)
+            self.driver.find_element(
+                By.XPATH, "//div[@title='Type a message']").send_keys(message)
             print("typed a message")
-            self.driver.find_element(By.XPATH, "//button[@aria-label='Send']").click()
+            self.driver.find_element(
+                By.XPATH, "//button[@aria-label='Send']").click()
             print("message sent")
             # Find the element.
             # element = driver.find_element(By.XPATH, "//div[@class='_3sHED']")
         except NoSuchElementException:
             # Do nothing if the element is not found.
             pass
-
 
     def check_messages(self):
         """Checks for new messages and responds to them."""
@@ -78,6 +85,7 @@ class WhatsAppBot:
             if value == "hey":
                 self.send_message(key, "hello, this is autmated message")
         print("iterated over all messages , done , waiting for other list")
+
 
 if __name__ == "__main__":
     bot = WhatsAppBot()

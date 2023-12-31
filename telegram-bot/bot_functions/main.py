@@ -7,7 +7,9 @@ import os
 
 class Bot:
     BOT_TOKEN = os.environ.get("TG_BOT_TOKEN")
-    PARSE_MODES = namedtuple("Parse_Modes", ("HTML", "MD"))("HTML", "MarkdownV2")
+    PARSE_MODES = namedtuple(
+        "Parse_Modes", ("HTML", "MD"))(
+        "HTML", "MarkdownV2")
 
     def __init__(self, token: str = BOT_TOKEN) -> None:
         """
@@ -48,7 +50,7 @@ class Bot:
         url = f"{self.__base_url}/sendMessage"
         data = {
             "chat_id": chat_id,
-            "parse_mode": parse_mode if parse_mode != None else self.PARSE_MODES.HTML,
+            "parse_mode": parse_mode if parse_mode is not None else self.PARSE_MODES.HTML,
             "text": text,
             "allow_sending_without_reply": True,
             "disable_web_page_preview": disable_web_page_preview,
@@ -105,8 +107,10 @@ class UpdateChat(Bot):
         )
         self.__entities = update_tuple[1][1].get("entities", [{}])
         if self.update_type == "callback_query":
-            self.chat_id: int = update_tuple[1][1]["message"].get("chat", {}).get("id")
-            self.message_id: int = update_tuple[1][1]["message"].get("message_id")
+            self.chat_id: int = update_tuple[1][1]["message"].get(
+                "chat", {}).get("id")
+            self.message_id: int = update_tuple[1][1]["message"].get(
+                "message_id")
         else:
             self.chat_id = update_tuple[1][1].get("chat", {}).get("id")
             self.message_id = update_tuple[1][1].get("message_id")
@@ -146,9 +150,9 @@ class UpdateChat(Bot):
             return None
         start = self.__entities[0]["offset"] + 1
         end = start + self.__entities[0]["length"] - 1
-        if only_start == True:
+        if only_start:
             if start == 1:
-                if argument == False:
+                if not argument:
                     return self.text[start:end]
                 else:
                     return (self.text[start:end], self.text[end:].strip())

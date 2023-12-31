@@ -7,9 +7,12 @@ from database_handler import UsersDBHandler, MongoDBPYQ, MongoDBNotes
 
 # Enter your telegram bot token here
 # https://t.me/test_foundation_iitmbs_bot link for default bot
-BOT_TOKEN = os.environ.get("TG_BOT_TOKEN", "6677627030:AAElX2DcR0vWqDGHdgbTio9og1DLJiMK5Mw")
+BOT_TOKEN = os.environ.get(
+    "TG_BOT_TOKEN",
+    "6677627030:AAElX2DcR0vWqDGHdgbTio9og1DLJiMK5Mw")
 
-# mongo db url (for testing and dev purpose create your own db locally or using mongodb atlas and paste the link below)
+# mongo db url (for testing and dev purpose create your own db locally or
+# using mongodb atlas and paste the link below)
 DB_URL = ""
 
 # insert your webhook url here, you can get it using vscode inbuilt tunneling in ports section
@@ -34,12 +37,14 @@ def index():
             if command[0] == "start":
                 print("user sent start command")
                 # register_user
-                if users_db.user_exists(str(response_["message"]["chat"]["id"])):
+                if users_db.user_exists(
+                        str(response_["message"]["chat"]["id"])):
                     print("user is old")
                     chat.send_message(replies.get("/start_old_user"))
                 else:
                     print("user is new")
-                    users_db.add_chat_id(str(response_["message"]["chat"]["id"]))
+                    users_db.add_chat_id(
+                        str(response_["message"]["chat"]["id"]))
                     chat.send_message(replies.get("/start_new_user"))
             elif command[0] == "select":
                 keyboard = {
