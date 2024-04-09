@@ -116,6 +116,10 @@ class Bot:
         payload = {"chat_id": chat_id}
         response = requests.post(url, json=payload).json()
         return response
+    
+    def QuoteFetcherFunc(self, api_url) -> None:
+        self.api_url = api_url
+        return QuoteFetcher(api_url)
 
 
 class UpdateChat(Bot):
@@ -234,7 +238,7 @@ class SentChat(Bot):
     def get_message_url(self):
         return super().get_message_url(self.chat_id, self.message_id)
 
-class QuoteFetcher:
+class QuoteFetcher(Bot):
     def __init__(self, api_url):
         self.api_url = api_url
 
@@ -242,4 +246,4 @@ class QuoteFetcher:
         response = requests.get(self.api_url)
         response.raise_for_status()  # Raise an exception if the request was unsuccessful
         data = response.json()
-        return data['quote']  # Assuming the API returns a JSON object with a 'quote' field
+        return data['text']  # Assuming the API returns a JSON object with a 'quote' field
