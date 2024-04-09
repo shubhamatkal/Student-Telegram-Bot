@@ -233,3 +233,13 @@ class SentChat(Bot):
 
     def get_message_url(self):
         return super().get_message_url(self.chat_id, self.message_id)
+
+class QuoteFetcher:
+    def __init__(self, api_url):
+        self.api_url = api_url
+
+    def get_random_quote(self):
+        response = requests.get(self.api_url)
+        response.raise_for_status()  # Raise an exception if the request was unsuccessful
+        data = response.json()
+        return data['quote']  # Assuming the API returns a JSON object with a 'quote' field
