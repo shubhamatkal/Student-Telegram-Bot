@@ -5,7 +5,6 @@ from messages import replies
 import os
 from database_handler import UsersDBHandler , MongoDBPYQ , MongoDBNotes
 
-
 # Enter your telegram bot token here
 # https://t.me/test_foundation_iitmbs_bot link for default bot
 BOT_TOKEN = os.environ.get(
@@ -26,7 +25,7 @@ notes_db = MongoDBNotes(DB_URL, "NOTES", "NOTES")
 pyq_db = MongoDBPYQ(DB_URL, "PYQ", "PYQ")
 bot.set_webhook(WEBHOOK_URL)
 app = Flask(__name__)
-
+quote_fetcher = Bot.QuoteFetcherFunc('https://type.fit/api/quotes') #api for quotes
 
 @app.route("/", methods=["POST", "GET"])
 def index():
@@ -42,6 +41,9 @@ def index():
 
             elif command[0] == "start":
                 print("user sent start command")
+                #Quote at start
+                quote = quote_fetcher.get_random_quote()
+                chat.send_message(quote)
                 #register_user
                 if users_db.user_exists(str(response_["message"]["chat"]["id"])):
                     print("user is old")
